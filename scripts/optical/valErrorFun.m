@@ -28,7 +28,7 @@ function [valError,cons,fileName] = valErrorFun(x, data, Target)
         lstmLayer(numHiddenUnits1,'OutputMode','sequence')
         lstmLayer(numHiddenUnits2,'OutputMode','last')
         fullyConnectedLayer(numResponses)
-        regressionLayer];
+        regressionLayer];%change this last layer to get probabilities perhaps? So ROC is feasible
 
         net = trainNetwork(FF_Train,Target_Train',layers,options);
         p11 = predict(net,FF_Train,'MiniBatchSize',MiniBatchSize);
@@ -39,6 +39,27 @@ function [valError,cons,fileName] = valErrorFun(x, data, Target)
         model = fitcsvm(p1,Target_Train','Solver','L1QP');
         pred = predict(model,p2);
         Error(num) = 1 - mean(pred == Target_Test');
+        
+        TP_class1 = sum((pred == 1) & (Target_test == 1));
+        TP_class2 = sum((pred == 2) & (Target_test == 2));
+        
+%         TN_class1 = TP_class2;
+%         TN_class2 = TP_class1;
+        
+        FP_class1 = sum(pred == 1) - TP_class1;
+        FP_class2 = sum(pred == 2) - TP_class2;
+        
+        FN_class1 = sum(Target_test == 2 & ~pred == 2);
+        FN_class2 = sum(Target_test == 1 & ~pred == 1);
+        
+        Precision_class1(num) = 1 - ((TP_class1) / (TP_class1 + FP_class1));
+        Precision_class2(num) = 1 - ((TP_class2) / (TP_class2 + FP_class2));
+        
+        Recall_class1(num) = 1 - ((TP_class1) / (TP_class1 + FN_class1));
+        Recall_class2(num) = 1 - ((TP_class2) / (TP_class2 + FN_class2));
+        
+        F1_class1(num) = 2*((Precision_class1 * Recall_class1)/(Precision_class1 + Recall_class1));
+        F1_class2(num) = 2*((Precision_class2 * Recall_class2)/(Precision_class2 + Recall_class2));
     end
     
     valError = mean(Error);
