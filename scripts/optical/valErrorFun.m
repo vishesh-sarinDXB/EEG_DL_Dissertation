@@ -60,6 +60,12 @@ function [valError,cons,fileName] = valErrorFun(x, data, Target)
         
         F1_class1(num) = 2*((Precision_class1 * Recall_class1)/(Precision_class1 + Recall_class1));
         F1_class2(num) = 2*((Precision_class2 * Recall_class2)/(Precision_class2 + Recall_class2));
+        
+        pred = pred - 1;
+        Target_test = Target_test - 1;
+        
+        
+        
     end
     
     valError = mean(Error);

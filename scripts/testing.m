@@ -1,9 +1,15 @@
-pred =   [0 1 0 0 0 0 1 1 0 1 0 1]
-target = [0 1 1 1 1 0 0 1 0 0 0 1]
+target =   [1 1 0]
+pred = [1 0.9 0.2]
 
-pred = double(pred)
-target = double(target)
+% pred = pred -1
 
-tp = sum(pred == 1 & target == 1)
-fp = sum(pred == 1) - tp
-fn = sum(target == 0 & ~pred == 0)
+
+
+loss = -((target .* log(pred)) + ((1 - target) .* log(1 - pred)))
+
+loss(isnan(loss)) = 0
+
+
+neg_test = [-1 2 3 -5]
+
+neg_test(neg_test < 0) = 0
