@@ -27,8 +27,8 @@ for k = 1 : length(data_dir)
         real(: , : , idx) = eeg.movement_right( : , real_event(idx-19):(real_event(idx-19) + 2999));%#ok<SAGROW>
     end
     
-    class_real(1:19) = 0;
-    class_real(20:38) = 1;
+    class_real(1:19) = 1;
+    class_real(20:38) = 2;
     
     for idx = 1 : 99
         mi(: , : , idx) = eeg.imagery_left( : , mi_event(idx):(mi_event(idx) + 2999)); %#ok<SAGROW>
@@ -38,11 +38,11 @@ for k = 1 : length(data_dir)
         mi(: , : , idx) = eeg.imagery_right( : , mi_event(idx-99):(mi_event(idx-99) + 2999));%#ok<SAGROW>
     end
     
-    class_mi(1:99) = 0;
-    class_mi(100:198) = 1;
+    class_mi(1:99) = 1;
+    class_mi(100:198) = 2;
     
     fullFileName = fullfile(data_processed_dir(1).folder, data_dir(k).name);
     
-    save(fullFileName, 'curr_real', 'curr_mi', 'class_mi', 'class_real');
+    save(fullFileName, 'real', 'mi', 'class_mi', 'class_real');
     
 end
