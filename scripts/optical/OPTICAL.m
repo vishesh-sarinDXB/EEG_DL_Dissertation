@@ -36,10 +36,10 @@ else % set default range
     L2_regularization_range = [1e-5 1e-3];
 end
 
-optimVars = [
-optimizableVariable('InitialLearnRate',initial_learn_rate_range,'Transform','log')
-optimizableVariable('L2Regularization',L2_regularization_range,'Transform','log')
-];    
+% optimVars = [
+% optimizableVariable('InitialLearnRate',initial_learn_rate_range,'Transform','log')
+% optimizableVariable('L2Regularization',L2_regularization_range,'Transform','log')
+% ];    
         
 original_window_size = size(train_data,2);
 overlap = round(percentage_overlap/100*window_size);
