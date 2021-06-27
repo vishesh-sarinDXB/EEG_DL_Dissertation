@@ -18,13 +18,13 @@
 % testi = [ 1 1 2 3 4 5 6 1]
 % 
 % find(testi == 1)
-load('BCICIV_calib_ds1a.mat');
-load('../data/raw/s01.mat');
+load('./miscellaneous/BCICIV_calib_ds1a.mat');
+load('../data/raw/mat_data/s01.mat');
 % 
-% fs = 100;            %sampling rate
-% startEpoch = 0.5;    %an epoch starts 0.5s after the cue
-% endEpoch = 2.5;      %an epoch ends 2.5s after the cue 
-% nbSamplesPerTrial = ceil((endEpoch - startEpoch) * fs);
+fs = eeg.srate;            %sampling rate
+startEpoch = 0.5;    %an epoch starts 0.5s after the cue
+endEpoch = 2.5;      %an epoch ends 2.5s after the cue 
+nbSamplesPerTrial = ceil((endEpoch - startEpoch) * fs);
 %     
 % 
 % 
@@ -32,16 +32,16 @@ load('../data/raw/s01.mat');
 % 
 % %perform band-pass filtering with a butterworth filter if needed
 % 
-% order = 8; 
+order = 8; 
+
+[B,A] = butter(order/2,[7 30]/(fs/2));   % [8 30]
 % 
-% [B,A] = butter(order/2,[7 30]/(fs/2));   % [8 30]
-% 
-% nbChannels = size(cnt,2);
+nbChannels = 64;
 % 
 % labels = mrk.y;
 % labels(labels==-1) = 2;
 % 
-% cues = mrk.pos;
+cues = find(eeg.movement_event == 1);
 % 
 % Indexes = find(~isnan(labels));
 % 
