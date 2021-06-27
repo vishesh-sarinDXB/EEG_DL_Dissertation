@@ -1,6 +1,6 @@
 load('../data/raw/mat_data/s01.mat');
 
-load('./miscellaneous/BCICIV_calib_ds1a.mat');
+% load('./miscellaneous/BCICIV_calib_ds1a.mat');
 
 fs = eeg.srate;
 startEpoch = 0.5;
@@ -19,6 +19,24 @@ nbTrials_mi = length(cues_mi);
 real = zeros(nbChannels, nbSamplesPerTrial, (nbTrials_real*2));
 mi = zeros(nbChannels, nbSamplesPerTrial, (nbTrials_mi*2));
 
-order = 8;
-[B,A] = butter(order/2,[7 30]/(fs/2));   % [8 30]
+[B,A] = butter(4,[7 30]/(fs/2));   % [8 30]
 
+movement_left = eeg.movement_left((1:64), :);
+movement_right = eeg.movement_right((1:64), :);
+
+for trial = 1 : nbTrials_real
+    cueIndex = cues_real(trial);
+    epoch = movement_left(:, (cueIndex + round(startEpoch*fs)):(cueIndex + round(endEpoch*fs))-1);
+    epoch = filter(B,A,epoch);
+    real(:,:,trial) = epoch;
+end
+
+for trial = (nbTrials_real + 1) : (nbTrials_real * 2)
+    cueIndex = cues_real(trial - nbTrials_real);
+    epoch = movement_right(:, (cueIndex + round(startEpoch*fs)):(cueIndex + round(endEpoch*fs))-1);
+    epoch = filter(B,A,epoch);
+    real(:,:,trial) = epoch;
+end
+
+class_real(1:nbTrials_real) = 1;
+class_real((nbTrials_real + 1) : (nbTrials_real * 2)) = 2;
