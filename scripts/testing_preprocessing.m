@@ -40,3 +40,23 @@ end
 
 class_real(1:nbTrials_real) = 1;
 class_real((nbTrials_real + 1) : (nbTrials_real * 2)) = 2;
+
+mi_left = eeg.imagery_left((1:64), :);
+mi_right = eeg.imagery_right((1:64), :);
+
+for trial = 1 : nbTrials_mi
+    cueIndex = cues_mi(trial);
+    epoch = mi_left(:, (cueIndex + round(startEpoch*fs)):(cueIndex + round(endEpoch*fs))-1);
+    epoch = filter(B,A,epoch);
+    mi(:,:,trial) = epoch;
+end
+
+for trial = (nbTrials_mi + 1) : (nbTrials_mi * 2)
+    cueIndex = cues_mi(trial - nbTrials_mi);
+    epoch = mi_right(:, (cueIndex + round(startEpoch*fs)):(cueIndex + round(endEpoch*fs))-1);
+    epoch = filter(B,A,epoch);
+    mi(:,:,trial) = epoch;
+end
+
+class_mi(1:nbTrials_real) = 1;
+class_mi((nbTrials_real + 1) : (nbTrials_real * 2)) = 2;
