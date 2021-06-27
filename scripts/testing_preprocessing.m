@@ -1,14 +1,14 @@
 % load('../data/raw/mat_data/s01.mat');
 
-data_dir = '../../data/raw/mat_data/';
+data_dir = '../data/raw/mat_data/';
 filePattern = fullfile(data_dir, '*.mat');
 data_dir = dir(filePattern);
 
-if ~exist('../data/processed/', 'dir')
-    mkdir ../data/processed/
+if ~exist('../data/processed_again/', 'dir')
+    mkdir ../data/processed_again/
 end
 
-data_processed_dir = dir('../data/processed/');
+data_processed_dir = dir('../data/processed_again/');
 
 startEpoch = 0.5;
 endEpoch = 2.5;
