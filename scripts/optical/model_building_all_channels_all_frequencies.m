@@ -16,7 +16,8 @@ Target_Train = class_mi(train_ind);
 Test_data = mi(:,:,test_ind);
 Target_Test = class_mi(test_ind);
 
-predicted_class = OPTICAL(Train_data,Test_data,Target_Train, Target_Test, 50, 20);
+predicted_class = OPTICAL(mi,real,class_mi, class_real, 50, 20);
+
 
 
 % predicted_class = OPTICAL(mi,real,class_mi, class_real, 50, 20);

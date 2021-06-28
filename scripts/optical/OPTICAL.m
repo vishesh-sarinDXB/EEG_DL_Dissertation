@@ -1,4 +1,6 @@
-function [predicted_class] = OPTICAL(train_data, ...
+function [predicted_class, lstmNnet, ... 
+                   svmCLF, train_accuracy, test_accuracy] = ...
+                             OPTICAL(train_data, ...
                                      test_data, ...
                                      class_train, ...
                                      class_test, ...
@@ -143,14 +145,16 @@ options = trainingOptions('sgdm', ...
 'GradientThreshold',1, ...
 'Verbose',0);
 
-net = trainNetwork(FF_Train,class_train',layers,options);
+lstmNnet = trainNetwork(FF_Train,class_train',layers,options);
 
-p1 = predict(net,FF_Train,'MiniBatchSize',1);
-MODEL=fitcsvm([p1 y2],class_train','Solver','L1QP');
-predicted_class_train = predict(MODEL,[p1 y2]);
+p1 = predict(lstmNnet,FF_Train,'MiniBatchSize',1);
+svmCLF=fitcsvm([p1 y2],class_train','Solver','L1QP');
+predicted_class_train = predict(svmCLF,[p1 y2]);
 
-p2 = predict(net,FF_Test,'MiniBatchSize',1);
-predicted_class = predict(MODEL,[p2 y2_Test']);
+p2 = predict(lstmNnet,FF_Test,'MiniBatchSize',1);
+predicted_class = predict(svmCLF,[p2 y2_Test']);
+
+% save('net.mat', 'net');
 
 train_accuracy = mean(class_train == predicted_class_train')*100;
 test_accuracy = mean(class_test == predicted_class')*100;
