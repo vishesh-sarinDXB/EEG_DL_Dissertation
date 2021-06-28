@@ -150,14 +150,60 @@ lstmNnet = trainNetwork(FF_Train,class_train',layers,options);
 p1 = predict(lstmNnet,FF_Train,'MiniBatchSize',1);
 svmCLF=fitcsvm([p1 y2],class_train','Solver','L1QP');
 predicted_class_train = predict(svmCLF,[p1 y2]);
+predicted_class_train = predicted_class_train'
 
 p2 = predict(lstmNnet,FF_Test,'MiniBatchSize',1);
 predicted_class = predict(svmCLF,[p2 y2_Test']);
+predicted_class = predicted_class'
 
 % save('net.mat', 'net');
 
-train_accuracy = mean(class_train == predicted_class_train')*100;
-test_accuracy = mean(class_test == predicted_class')*100;
+TP_class1 = sum((predicted_class == 1) & (class_test == 1));
+TP_class2 = sum((predicted_class == 2) & (class_test == 2));
+
+%         TN_class1 = TP_class2;
+%         TN_class2 = TP_class1;
+
+FP_class1 = sum(predicted_class == 1) - TP_class1;
+FP_class2 = sum(predicted_class == 2) - TP_class2;
+
+FN_class1 = sum(class_test == 2 & ~predicted_class == 2);
+FN_class2 = sum(class_test == 1 & ~predicted_class == 1);
+
+Precision_class1 = ((TP_class1) / (TP_class1 + FP_class1));
+Precision_class2 = ((TP_class2) / (TP_class2 + FP_class2));
+
+Recall_class1 = ((TP_class1) / (TP_class1 + FN_class1));
+Recall_class2 = ((TP_class2) / (TP_class2 + FN_class2));
+
+F1_class1 = 2*((Precision_class1 * Recall_class1)/(Precision_class1 + Recall_class1));
+F1_class2 = 2*((Precision_class2 * Recall_class2)/(Precision_class2 + Recall_class2));
+
+%train
+
+TP_class1 = sum((predicted_class_train == 1) & (class_test == 1));
+TP_class2 = sum((predicted_class_train == 2) & (class_test == 2));
+
+%         TN_class1 = TP_class2;
+%         TN_class2 = TP_class1;
+
+FP_class1 = sum(predicted_class_train == 1) - TP_class1;
+FP_class2 = sum(predicted_class_train == 2) - TP_class2;
+
+FN_class1 = sum(class_test == 2 & ~predicted_class_train == 2);
+FN_class2 = sum(class_test == 1 & ~predicted_class_train == 1);
+
+Precision_class1 = ((TP_class1) / (TP_class1 + FP_class1));
+Precision_class2 = ((TP_class2) / (TP_class2 + FP_class2));
+
+Recall_class1 = ((TP_class1) / (TP_class1 + FN_class1));
+Recall_class2 = ((TP_class2) / (TP_class2 + FN_class2));
+
+F1_class1 = 2*((Precision_class1 * Recall_class1)/(Precision_class1 + Recall_class1));
+F1_class2 = 2*((Precision_class2 * Recall_class2)/(Precision_class2 + Recall_class2));
+
+train_accuracy = mean(class_train == predicted_class_train);
+test_accuracy = mean(class_test == predicted_class);
 fprintf('Accuracy on train data is %5.2f%%',train_accuracy)
 fprintf('\nAccuracy on test data is %5.2f%%',test_accuracy)
 fprintf('\n')
