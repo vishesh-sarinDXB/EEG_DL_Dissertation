@@ -181,26 +181,26 @@ F1_class2 = 2*((Precision_class2 * Recall_class2)/(Precision_class2 + Recall_cla
 
 %train
 
-TP_class1 = sum((predicted_class_train == 1) & (class_test == 1));
-TP_class2 = sum((predicted_class_train == 2) & (class_test == 2));
+TP_class1_train = sum((predicted_class_train == 1) & (class_train == 1));
+TP_class_train = sum((predicted_class_train == 2) & (class_train == 2));
 
 %         TN_class1 = TP_class2;
 %         TN_class2 = TP_class1;
 
-FP_class1 = sum(predicted_class_train == 1) - TP_class1;
-FP_class2 = sum(predicted_class_train == 2) - TP_class2;
+FP_class1_train = sum(predicted_class_train == 1) - TP_class1_train;
+FP_class2_train = sum(predicted_class_train == 2) - TP_class2_train;
 
-FN_class1 = sum(class_test == 2 & ~predicted_class_train == 2);
-FN_class2 = sum(class_test == 1 & ~predicted_class_train == 1);
+FN_class1_train = sum(class_train == 2 & ~predicted_class_train == 2);
+FN_class2_train = sum(class_train == 1 & ~predicted_class_train == 1);
 
-Precision_class1 = ((TP_class1) / (TP_class1 + FP_class1));
-Precision_class2 = ((TP_class2) / (TP_class2 + FP_class2));
+Precision_class1_train = ((TP_class1_train) / (TP_class1_train + FP_class1_train));
+Precision_class2_train = ((TP_class2_train) / (TP_class2_train + FP_class2_train));
 
-Recall_class1 = ((TP_class1) / (TP_class1 + FN_class1));
-Recall_class2 = ((TP_class2) / (TP_class2 + FN_class2));
+Recall_class1_train = ((TP_class1_train) / (TP_class1_train + FN_class1_train));
+Recall_class2_train = ((TP_class2_train) / (TP_class2_train + FN_class2_train));
 
-F1_class1 = 2*((Precision_class1 * Recall_class1)/(Precision_class1 + Recall_class1));
-F1_class2 = 2*((Precision_class2 * Recall_class2)/(Precision_class2 + Recall_class2));
+F1_class1_train = 2*((Precision_class1_train * Recall_class1_train)/(Precision_class1_train + Recall_class1_train));
+F1_class2_train = 2*((Precision_class2_train * Recall_class2_train)/(Precision_class2_train + Recall_class2_train));
 
 train_accuracy = mean(class_train == predicted_class_train);
 test_accuracy = mean(class_test == predicted_class);
