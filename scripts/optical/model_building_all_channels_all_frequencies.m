@@ -8,7 +8,7 @@ data_processed_dir = dir(filePattern);
 
 % data_processed_dir = dir('../../data/processed/');
 
-varTypes = cell(1, 15);
+varTypes = cell(1, 14);
 varTypes(:) = {'double'};
 
 varNames = ["train_accuracy", "test_accuracy", ...
@@ -40,7 +40,7 @@ for k = 1 : length(data_processed_dir)
     
     models_dir =  dir('../../models/all_channels_frequencies/');
     
-    fullFileName = fullfile(models_dir(1).folder, data_dir(k).name);
+    fullFileName = fullfile(models_dir(1).folder, data_processed_dir(k).name);
     
     save(fullFileName, 'lstmNnet', 'svmCLF');
     
