@@ -75,5 +75,4 @@ writetable(T, '../../summary/all_channels_frequencies.csv');
 
 % predicted_class = OPTICAL(mi,real,class_mi, class_real, 50, 20);
 
-
 % predicted_class = OPTICAL(mi,real,class_mi, class_real, 50, 20);
