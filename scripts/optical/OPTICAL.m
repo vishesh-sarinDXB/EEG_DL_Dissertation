@@ -185,7 +185,7 @@ F1_class2 = 2*((Precision_class2 * Recall_class2)/(Precision_class2 + Recall_cla
 %train
 
 TP_class1_train = sum((predicted_class_train == 1) & (class_train == 1));
-TP_class_train = sum((predicted_class_train == 2) & (class_train == 2));
+TP_class2_train = sum((predicted_class_train == 2) & (class_train == 2));
 
 %         TN_class1 = TP_class2;
 %         TN_class2 = TP_class1;
