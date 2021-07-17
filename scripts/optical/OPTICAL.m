@@ -150,6 +150,9 @@ options = trainingOptions('sgdm', ...
 
 lstmNnet = trainNetwork(FF_Train,class_train',layers,options);
 
+y2 = real(y2);
+y2_Test = real(y2_Test);
+
 p1 = predict(lstmNnet,FF_Train,'MiniBatchSize',1);
 svmCLF=fitcsvm([p1 y2],class_train','Solver','L1QP');
 predicted_class_train = predict(svmCLF,[p1 y2]);
