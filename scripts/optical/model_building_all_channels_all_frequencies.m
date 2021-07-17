@@ -1,12 +1,12 @@
-data_dir = '../data/raw/mat_data/';
-filePattern = fullfile(data_dir, '*.mat');
-data_dir = dir(filePattern);
+data_processed_dir = '../../data/processed/';
+filePattern = fullfile(data_processed_dir, '*.mat');
+data_processed_dir = dir(filePattern);
 
-if ~exist('../data/processed/', 'dir')
-    mkdir ../data/processed/
-end
+% if ~exist('../data/processed/', 'dir')
+%     mkdir ../data/processed/
+% end
 
-data_processed_dir = dir('../data/processed/');
+data_processed_dir = dir('../../data/processed/');
 
 varTypes = cell(1, 15);
 varTypes(:) = {'double'};
@@ -18,9 +18,9 @@ varNames = ["predicted_class", "train_accuracy", "test_accuracy", ...
 
 T = table('Size', [52 15], 'VariableTypes', varTypes, 'VariableNames', varNames);
 
-for k = 1 : length(data_dir)
+for k = 1 : length(data_processed_dir)
     
-    fullFileName = fullfile(data_dir(k).folder, data_dir(k).name);
+    fullFileName = fullfile(data_processed_dir(k).folder, data_processed_dir(k).name);
     load(fullFileName);
     
     [predicted_class, lstmNnet, svmCLF, train_accuracy, test_accuracy, ...
@@ -34,11 +34,11 @@ for k = 1 : length(data_dir)
                F1_class1, F1_class2, Precision_class1_train, Precision_class2_train, ...
                Recall_class1_train, Recall_class2_train, F1_class1_train, F1_class2_train];
     
-    if ~exist('../models/all_channels_frequencies/', 'dir')
-        mkdir ../models/all_channels_frequencies/
+    if ~exist('../../models/all_channels_frequencies/', 'dir')
+        mkdir ../../models/all_channels_frequencies/
     end
     
-    models_dir =  dir('../models/all_channels_frequencies/');
+    models_dir =  dir('../../models/all_channels_frequencies/');
     
     fullFileName = fullfile(models_dir(1).folder, data_dir(k).name);
     
@@ -46,11 +46,11 @@ for k = 1 : length(data_dir)
     
 end
 
-if ~exist('../summary/', 'dir')
-    mkdir ../summary/
+if ~exist('../../summary/', 'dir')
+    mkdir ../../summary/
 end
 
-writetable(T, '../summary/all_channels_frequencies.csv');
+writetable(T, '../../summary/all_channels_frequencies.csv');
 
 % 
 % load('../../data/processed/s01.mat') % load sample data
