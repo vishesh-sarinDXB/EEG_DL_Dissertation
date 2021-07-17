@@ -50,6 +50,8 @@ if ~exist('../../summary/', 'dir')
     mkdir ../../summary/
 end
 
+T = fillmissing(T, 'constant', 0);
+
 writetable(T, '../../summary/all_channels_frequencies.csv');
 
 % 
