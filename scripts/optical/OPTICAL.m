@@ -173,8 +173,8 @@ TP_class2 = sum((predicted_class == 2) & (class_test == 2));
 FP_class1 = sum(predicted_class == 1) - TP_class1;
 FP_class2 = sum(predicted_class == 2) - TP_class2;
 
-FN_class1 = sum(class_test == 2 & ~predicted_class == 2);
-FN_class2 = sum(class_test == 1 & ~predicted_class == 1);
+FN_class1 = sum(class_test == 2 & predicted_class ~= 2);
+FN_class2 = sum(class_test == 1 & predicted_class ~= 1);
 
 Precision_class1 = ((TP_class1) / (TP_class1 + FP_class1));
 Precision_class2 = ((TP_class2) / (TP_class2 + FP_class2));
@@ -196,8 +196,8 @@ TP_class2_train = sum((predicted_class_train == 2) & (class_train == 2));
 FP_class1_train = sum(predicted_class_train == 1) - TP_class1_train;
 FP_class2_train = sum(predicted_class_train == 2) - TP_class2_train;
 
-FN_class1_train = sum(class_train == 2 & ~predicted_class_train == 2);
-FN_class2_train = sum(class_train == 1 & ~predicted_class_train == 1);
+FN_class1_train = sum(class_train == 2 & predicted_class_train ~= 2);
+FN_class2_train = sum(class_train == 1 & predicted_class_train ~= 1);
 
 Precision_class1_train = ((TP_class1_train) / (TP_class1_train + FP_class1_train));
 Precision_class2_train = ((TP_class2_train) / (TP_class2_train + FP_class2_train));
