@@ -50,7 +50,7 @@ if ~exist('../summary/', 'dir')
     mkdir ../summary/
 end
 
-writeTable(T, '../summary/all_channels_frequencies.csv');
+writetable(T, '../summary/all_channels_frequencies.csv');
 
 % 
 % load('../../data/processed/s01.mat') % load sample data
@@ -71,7 +71,7 @@ writeTable(T, '../summary/all_channels_frequencies.csv');
 % Test_data = mi(:,:,test_ind);
 % Target_Test = class_mi(test_ind);
 
-predicted_class = OPTICAL(mi,real,class_mi, class_real, 50, 20);
+% predicted_class = OPTICAL(mi,real,class_mi, class_real, 50, 20);
 
 
 % predicted_class = OPTICAL(mi,real,class_mi, class_real, 50, 20);
