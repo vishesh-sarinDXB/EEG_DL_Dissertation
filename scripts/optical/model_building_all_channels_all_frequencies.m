@@ -6,7 +6,7 @@ data_processed_dir = dir(filePattern);
 %     mkdir ../data/processed/
 % end
 
-data_processed_dir = dir('../../data/processed/');
+% data_processed_dir = dir('../../data/processed/');
 
 varTypes = cell(1, 15);
 varTypes(:) = {'double'};
