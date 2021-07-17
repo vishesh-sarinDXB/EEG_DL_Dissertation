@@ -153,11 +153,11 @@ lstmNnet = trainNetwork(FF_Train,class_train',layers,options);
 p1 = predict(lstmNnet,FF_Train,'MiniBatchSize',1);
 svmCLF=fitcsvm([p1 y2],class_train','Solver','L1QP');
 predicted_class_train = predict(svmCLF,[p1 y2]);
-predicted_class_train = predicted_class_train'
+predicted_class_train = predicted_class_train';
 
 p2 = predict(lstmNnet,FF_Test,'MiniBatchSize',1);
 predicted_class = predict(svmCLF,[p2 y2_Test']);
-predicted_class = predicted_class'
+predicted_class = predicted_class';
 
 % save('net.mat', 'net');
 
