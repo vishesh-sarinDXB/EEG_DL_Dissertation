@@ -7,7 +7,28 @@
 %                Recall_class1_train, Recall_class2_train, F1_class1_train, F1_class2_train] = ...
 %                OPTICAL(mi,real,class_mi, class_real, 50, 20);
 %            
-       
+
+if ~exist('./somedir/somedir2/', 'dir')
+    mkdir ./somedir/somedir2/
+end
+
+if ~exist('./somedir/somedir3/', 'dir')
+    mkdir ./somedir/somedir3/
+end
+
+% data_processed_dir = dir('../../data/processed/');
+
+% idx = [1:14, 17:19, 32:51, 54:56];
+% 
+% idx2 = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 17 18 19 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 54 55 56]
+% 
+% test = mi(idx, :, :);
+% test2 = mi(1:40, :, :);
+% test3 = mi(idx2, :, :);
+% 
+% tf1 = isequal(test, test2)
+% 
+% tf2 = isequal(test, test3)
 
 
 % standardizeMissing(allchannelsfrequencies, {nan, 0})
