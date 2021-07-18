@@ -2,11 +2,11 @@ data_dir = '../data/raw/mat_data/';
 filePattern = fullfile(data_dir, '*.mat');
 data_dir = dir(filePattern);
 
-if ~exist('../data/processed/', 'dir')
-    mkdir ../data/processed/
+if ~exist('../data/processed/sevenThirty/', 'dir')
+    mkdir ../data/processed/sevenThirty/
 end
 
-data_processed_dir = dir('../data/processed/');
+data_processed_dir = dir('../data/processed/sevenThirty/');
 
 startEpoch = 0.5;
 endEpoch = 2.5;
