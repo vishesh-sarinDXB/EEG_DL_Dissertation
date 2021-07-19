@@ -8,13 +8,28 @@
 %                OPTICAL(mi,real,class_mi, class_real, 50, 20);
 %            
 
-if ~exist('./somedir/somedir2/', 'dir')
-    mkdir ./somedir/somedir2/
-end
+% if (~isequal([1:64], [1:63]))
+%     disp('Testing')
+% end
 
-if ~exist('./somedir/somedir3/', 'dir')
-    mkdir ./somedir/somedir3/
-end
+dir_var = 'somedir3///';
+dir_var = strcat('./somedir1/', dir_var);
+% 
+mkdir(dir_var)
+% 
+% function playground()
+% disp('testing')
+
+
+
+% 
+% if ~exist('./somedir/somedir2/', 'dir')
+%     mkdir ./somedir/somedir2/
+% end
+% 
+% if ~exist('./somedir/somedir3/', 'dir')
+%     mkdir ./somedir/somedir3/
+% end
 
 % data_processed_dir = dir('../../data/processed/');
 
