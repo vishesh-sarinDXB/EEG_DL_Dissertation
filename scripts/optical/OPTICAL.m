@@ -111,7 +111,7 @@ for i = 1:length(class_test)
     FF_Test{i,1} = F_Test((i-1)*number_of_windows+1:i*number_of_windows,:)';
 end
 
-fun = @(x)valErrorFun(x, FF_Train, class_train);
+% fun = @(x)valErrorFun(x, FF_Train, class_train);
 
 % results = bayesopt(fun,optimVars,...
 % 'IsObjectiveDeterministic',true,...

@@ -8,4 +8,4 @@ OPTICALexperiment('../../data/processed/sevenThirty/', 'bio_channels_experiments
 
 % Using all channels, but bandpass ButterWorth filter between 8 and 14 Hz
 % thus isolating alpha and mu waves
-OPTICALexperiment('../../data/processed/eightFourteen/', 'all_channels_alphamu_experiments', [1:64])
+OPTICALexperiment('../../data/processed/eightFourteen/', 'all_channels_alphamu_experiments', [1:64]);
