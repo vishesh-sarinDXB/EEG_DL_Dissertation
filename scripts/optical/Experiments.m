@@ -1,3 +1,7 @@
+% Experiment names will describe channels used first, then frequencies. If
+% frequencies are ommited then a bandpass filter between 7 and 30 Hz maybe
+% assumed.
+
 % All channels, only basic bandpass filter between 7 and 30 Hz
 OPTICALexperiment('../../data/processed/sevenThirty/', 'all', [1:64]);
 
