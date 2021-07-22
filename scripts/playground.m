@@ -12,10 +12,15 @@
 %     disp('Testing')
 % end
 
-dir_var = 'somedir3///';
-dir_var = strcat('./somedir1/', dir_var);
-% 
-mkdir(dir_var)
+% load('./legacy/scriptssample_data') % load sample data
+load('./legacy/scripts_shiu_examples/Actual_class') % load the actual class of the sample data
+ind = crossvalind('Kfold',Actual_class,10); % generate indices to divide 
+% sample data into train and test data
+
+% dir_var = 'somedir3///';
+% dir_var = strcat('./somedir1/', dir_var);
+% % 
+% mkdir(dir_var)
 % 
 % function playground()
 % disp('testing')
