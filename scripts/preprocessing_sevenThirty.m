@@ -70,8 +70,8 @@ for k = 1 : length(data_dir)
         mi(:,:,trial) = epoch;
     end
 
-    class_mi(1:nbTrials_real) = 1;
-    class_mi((nbTrials_real + 1) : (nbTrials_real * 2)) = 2;
+    class_mi(1:nbTrials_mi) = 1;
+    class_mi((nbTrials_mi + 1) : (nbTrials_mi * 2)) = 2;
     
     fullFileName = fullfile(data_processed_dir(1).folder, data_dir(k).name);
     
