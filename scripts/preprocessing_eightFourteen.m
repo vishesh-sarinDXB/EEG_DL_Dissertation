@@ -76,5 +76,22 @@ for k = 1 : length(data_dir)
     fullFileName = fullfile(data_processed_dir(1).folder, data_dir(k).name);
     
     save(fullFileName, 'real', 'mi', 'class_mi', 'class_real');
+    
+    clear
+    
+    data_dir = '../data/raw/mat_data/';
+    filePattern = fullfile(data_dir, '*.mat');
+    data_dir = dir(filePattern);
+
+    if ~exist('../data/processed/eightFourteen/', 'dir')
+        mkdir ../data/processed/eightFourteen/
+    end
+
+    data_processed_dir = dir('../data/processed/eightFourteen/');
+
+    startEpoch = 0.5;
+    endEpoch = 2.5;
+
+    nbChannels = 64;
 
 end
