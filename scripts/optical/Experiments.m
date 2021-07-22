@@ -48,3 +48,9 @@ clear
 % Using bandpass filter between 8 and 14 Hz thus isolating mu waves
 OPTICALexperiment('../../data/processed/eightFourteen/', 'bio_channelsConly_alphamu', [9:14, 17:19, 32, 44:51, 54:56]);
 clear
+
+% Only using channels related to motor cortex and occipital lobe (C and O electrodes). 
+% Allowing channels that are in between these and other regions.
+% Using bandpass filter between 8 and 14 Hz thus isolating alpha and mu waves
+OPTICALexperiment('../../data/processed/eightFourteen/', 'bio_channelsOConly_alphamu', [9:14, 17:19, 32, 25:30, 44:51, 54:56, 62:64]);
+clear
