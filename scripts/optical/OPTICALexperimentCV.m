@@ -76,7 +76,7 @@ for k = 1 : length(data_processed_dir)
 
     T = fillmissing(T, 'constant', 0);
 
-    summaryFullFileName = strcat('../../summary/mi_csv/', experiment_name, '.csv');
+    summaryFullFileName = strcat('../../summary/mi_cv/', experiment_name, '.csv');
 
     writetable(T, summaryFullFileName);
     
