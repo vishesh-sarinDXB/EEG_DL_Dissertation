@@ -70,13 +70,15 @@ for k = 1 : length(data_processed_dir)
     
     save(fullFileName, 'lstm', 'svm', 'ind');
     
-    if ~exist('../../summary/mi_cv/', 'dir')
-        mkdir ../../summary/mi_cv/
+    summary_dir_cat = strcat('../../summary/mi_cv/', experiment_name, '/');
+    
+    if ~exist(summary_dir_cat, 'dir')
+        mkdir(summary_dir_cat)
     end
 
     T = fillmissing(T, 'constant', 0);
 
-    summaryFullFileName = strcat('../../summary/mi_cv/', experiment_name, '.csv');
+    summaryFullFileName = strcat(summary_dir_cat, data_processed_dir(k).name, '.csv');
 
     writetable(T, summaryFullFileName);
     
