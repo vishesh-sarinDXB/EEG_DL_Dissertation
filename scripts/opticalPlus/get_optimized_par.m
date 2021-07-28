@@ -54,7 +54,7 @@ empty_individual.Cost=[];
 pop=repmat(empty_individual,nPop,1);
 % disp('Start')
 parfor i=1:nPop
-%     disp(i)
+    disp(i)
     % Initialize Position
     if i == 1
         pop(i).Position=[7, 30, 4];
