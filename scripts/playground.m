@@ -1,51 +1,69 @@
-fs = 5000;                     
+% vec = 1:length(class_mi)
 
-t = 0:1/fs:0.1;                 
-f1 = 10;                       
-f2 = 50;
+movement_left = eeg.movement_left((1:64), :);
+movement_right = eeg.movement_right((1:64), :);
 
-sin1 = sin(2*pi*f1*t);       
-sin2 = sin(2*pi*f2*t);
+mi_left = eeg.imagery_left((1:64), :);
+mi_right = eeg.imagery_right((1:64), :);
 
-x1 = [sin1 sin2 sin1 sin2];    
-x2 = [sin2 sin1 sin2 sin1];
+arrayshape = size(movement_left);
+% 
+% i = 1:(arrayshape(1));
 
-n_channels = 64;
+for i=1:(arrayshape(1)) signal2(i,:)=movement_left(i,:)-mean(movement_left,1); end
 
-eeg_1 = ones(length(x1),n_channels);       
-eeg_2 = ones(length(x1),n_channels);
+% vec = vec(randperm(length(vec)));
+% vec2(1:100) = 1;
+% vec2(101:200) = 2;
 
-eeg_1 = eeg_1.*x1';
-eeg_2 = eeg_2.*x2';
-
-eeg_1 = eeg_1./([1:32 32:-1:1]).^2; 
-eeg_2 = eeg_2./([1:32 32:-1:1]).^2; 
-
-n_trials = 100;
-n_channels = 64;
-n_coeff = 256;
-n_time = length(t);
-
-X1 = zeros(n_trials, n_time, n_coeff, n_channels);
-X2 = zeros(n_trials, n_time, n_coeff, n_channels);
-
-for i = 1:n_trials
-    for chan = 1:n_channels
-        
-        temp_1 = eeg_1(:,chan);
-        temp_2 = eeg_2(:,chan);
-        
-        [s1, w1, t1] = spectrogram(temp_1,100,0,[],fs,'yaxis','centered');
-        [s2, w2, t2] = spectrogram(temp_2,100,0,[],fs,'yaxis','centered');
-        
-        X1(i,:,:,chan) = abs(s1)' + rand([n_time, n_coeff]);
-        X2(i,:,:,chan) = abs(s2)' + rand([n_time, n_coeff]);
-
-    end
-end
-
-X = [X1; X2];
-y = [zeros(100,1); ones(100,1)];
+% fs = 5000;                     
+% 
+% t = 0:1/fs:0.1;                 
+% f1 = 10;                       
+% f2 = 50;
+% 
+% sin1 = sin(2*pi*f1*t);       
+% sin2 = sin(2*pi*f2*t);
+% 
+% x1 = [sin1 sin2 sin1 sin2];    
+% x2 = [sin2 sin1 sin2 sin1];
+% 
+% n_channels = 64;
+% 
+% eeg_1 = ones(length(x1),n_channels);       
+% eeg_2 = ones(length(x1),n_channels);
+% 
+% eeg_1 = eeg_1.*x1';
+% eeg_2 = eeg_2.*x2';
+% 
+% eeg_1 = eeg_1./([1:32 32:-1:1]).^2; 
+% eeg_2 = eeg_2./([1:32 32:-1:1]).^2; 
+% 
+% n_trials = 100;
+% n_channels = 64;
+% n_coeff = 256;
+% n_time = length(t);
+% 
+% X1 = zeros(n_trials, n_time, n_coeff, n_channels);
+% X2 = zeros(n_trials, n_time, n_coeff, n_channels);
+% 
+% for i = 1:n_trials
+%     for chan = 1:n_channels
+%         
+%         temp_1 = eeg_1(:,chan);
+%         temp_2 = eeg_2(:,chan);
+%         
+%         [s1, w1, t1] = spectrogram(temp_1,100,0,[],fs,'yaxis','centered');
+%         [s2, w2, t2] = spectrogram(temp_2,100,0,[],fs,'yaxis','centered');
+%         
+%         X1(i,:,:,chan) = abs(s1)' + rand([n_time, n_coeff]);
+%         X2(i,:,:,chan) = abs(s2)' + rand([n_time, n_coeff]);
+% 
+%     end
+% end
+% 
+% X = [X1; X2];
+% y = [zeros(100,1); ones(100,1)];
 
 
 
