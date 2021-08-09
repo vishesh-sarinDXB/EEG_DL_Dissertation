@@ -168,8 +168,8 @@ predicted_class = predicted_class';
 TP_class1 = sum((predicted_class == 1) & (class_test == 1));
 TP_class2 = sum((predicted_class == 2) & (class_test == 2));
 
-%         TN_class1 = TP_class2;
-%         TN_class2 = TP_class1;
+TN_class1 = TP_class2;
+TN_class2 = TP_class1;
 
 FP_class1 = sum(predicted_class == 1) - TP_class1;
 FP_class2 = sum(predicted_class == 2) - TP_class2;
@@ -213,8 +213,11 @@ F1_class2_train = 2*((Precision_class2_train * Recall_class2_train)/(Precision_c
 % F1_class1, F1_class2, Precision_class1_train, Precision_class2_train,
 % Recall_class1_train, Recall_class2_train, F1_class1_train, F1_class2_train
 
+MC_class1 = (FP_class1 + FN_class1) / (TP_class1 + TN_class1 + FP_class1 + FN_class1);
+
 train_accuracy = mean(class_train == predicted_class_train);
 test_accuracy = mean(class_test == predicted_class);
 fprintf('Accuracy on train data is %5.2f%%',train_accuracy)
 fprintf('\nAccuracy on test data is %5.2f%%',test_accuracy)
+fprintf('\nMC on test data is %5.2f%%',MC_class1)
 fprintf('\n')
