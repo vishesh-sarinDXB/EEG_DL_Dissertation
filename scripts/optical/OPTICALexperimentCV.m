@@ -31,7 +31,7 @@ for k = 1 : length(data_processed_dir)
     lstm = cell(10);
     svm = cell(10);
     
-    class_mi = class_mi - 1;
+%     class_mi = class_mi - 1;
     
     vec = 1:length(class_mi);
     vec = vec(randperm(length(vec)));
