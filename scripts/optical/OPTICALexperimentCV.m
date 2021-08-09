@@ -31,6 +31,12 @@ for k = 1 : length(data_processed_dir)
     lstm = cell(10);
     svm = cell(10);
     
+    vec = 1:length(class_mi);
+    vec = vec(randperm(length(vec)));
+    
+    class_mi = class_mi(vec);
+    mi = mi(:, :, vec);
+    
     for fold = 1 : 10
 
         test = (ind == fold); 
