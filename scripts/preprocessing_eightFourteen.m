@@ -8,8 +8,8 @@ end
 
 data_processed_dir = dir('../data/processed/eightFourteen/');
 
-startEpoch = 0.5;
-endEpoch = 2.5;
+startEpoch = 2.5;
+endEpoch = 4.5;
 
 nbChannels = 64;
 
