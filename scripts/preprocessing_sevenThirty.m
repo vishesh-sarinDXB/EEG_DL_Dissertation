@@ -33,33 +33,33 @@ for k = 1 : length(data_dir)
 
     [B,A] = butter(4,[7 30]/(fs/2));   % [8 30]
 
-    movement_left_intermediate = eeg.movement_left((1:64), :);
-    movement_right_intermediate = eeg.movement_right((1:64), :);
-    
-    movement_shape_left = size(movement_left_intermediate);
-    movement_shape_right = size(movement_right_intermediate);
-    
-    movement_left = zeros(movement_shape_left);
-    movement_right = zeros(movement_shape_right);
-    
-    for i=1:(movement_shape_left(1)) 
-        movement_left(i,:)=movement_left_intermediate(i,:)-mean(movement_left_intermediate,1); 
-    end
-
-    for i=1:(movement_shape_right(1)) 
-        movement_right(i,:)=movement_right_intermediate(i,:)-mean(movement_right_intermediate,1); 
-    end
+    movement_left = eeg.movement_left((1:64), :);
+    movement_right = eeg.movement_right((1:64), :);
 
     for trial = 1 : nbTrials_real
         cueIndex = cues_real(trial);
-        epoch = movement_left(:, (cueIndex + round(startEpoch*fs)):(cueIndex + round(endEpoch*fs))-1);
+        epoch_intermediate = movement_left(:, (cueIndex + round(startEpoch*fs)):(cueIndex + round(endEpoch*fs))-1);
+        epoch_shape = size(epoch_intermediate);
+        epoch = zeros(epoch_shape);
+        
+        for i=1:(epoch_shape(1))
+            epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
+        end
+        
         epoch = filter(B,A,epoch);
         real(:,:,trial) = epoch;
     end
 
     for trial = (nbTrials_real + 1) : (nbTrials_real * 2)
         cueIndex = cues_real(trial - nbTrials_real);
-        epoch = movement_right(:, (cueIndex + round(startEpoch*fs)):(cueIndex + round(endEpoch*fs))-1);
+        epoch_intermediate = movement_right(:, (cueIndex + round(startEpoch*fs)):(cueIndex + round(endEpoch*fs))-1);
+        epoch_shape = size(epoch_intermediate);
+        epoch = zeros(epoch_shape);
+        
+        for i=1:(epoch_shape(1))
+            epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
+        end
+        
         epoch = filter(B,A,epoch);
         real(:,:,trial) = epoch;
     end
@@ -67,33 +67,33 @@ for k = 1 : length(data_dir)
     class_real(1:nbTrials_real) = 1;
     class_real((nbTrials_real + 1) : (nbTrials_real * 2)) = 2;
 
-    mi_left_intermediate = eeg.imagery_left((1:64), :);
-    mi_right_intermediate = eeg.imagery_right((1:64), :);
-    
-    mi_shape_left = size(mi_left_intermediate);
-    mi_shape_right = size(mi_right_intermediate);
-    
-    mi_left = zeros(mi_shape_left);
-    mi_right = zeros(mi_shape_right);
-    
-    for i=1:(mi_shape_left(1)) 
-        mi_left(i,:)=mi_left_intermediate(i,:)-mean(mi_left_intermediate,1); 
-    end
-
-    for i=1:(mi_shape_right(1)) 
-        mi_right(i,:)=mi_right_intermediate(i,:)-mean(mi_right_intermediate,1); 
-    end
+    mi_left = eeg.imagery_left((1:64), :);
+    mi_right = eeg.imagery_right((1:64), :);
 
     for trial = 1 : nbTrials_mi
         cueIndex = cues_mi(trial);
-        epoch = mi_left(:, (cueIndex + round(startEpoch*fs)):(cueIndex + round(endEpoch*fs))-1);
+        epoch_intermediate = mi_left(:, (cueIndex + round(startEpoch*fs)):(cueIndex + round(endEpoch*fs))-1);
+        epoch_shape = size(epoch_intermediate);
+        epoch = zeros(epoch_shape);
+        
+        for i=1:(epoch_shape(1))
+            epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
+        end
+        
         epoch = filter(B,A,epoch);
         mi(:,:,trial) = epoch;
     end
 
     for trial = (nbTrials_mi + 1) : (nbTrials_mi * 2)
         cueIndex = cues_mi(trial - nbTrials_mi);
-        epoch = mi_right(:, (cueIndex + round(startEpoch*fs)):(cueIndex + round(endEpoch*fs))-1);
+        epoch_intermediate = mi_right(:, (cueIndex + round(startEpoch*fs)):(cueIndex + round(endEpoch*fs))-1);
+        epoch_shape = size(epoch_intermediate);
+        epoch = zeros(epoch_shape);
+        
+        for i=1:(epoch_shape(1))
+            epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
+        end
+        
         epoch = filter(B,A,epoch);
         mi(:,:,trial) = epoch;
     end
