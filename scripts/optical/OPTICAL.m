@@ -214,10 +214,12 @@ F1_class2_train = 2*((Precision_class2_train * Recall_class2_train)/(Precision_c
 % Recall_class1_train, Recall_class2_train, F1_class1_train, F1_class2_train
 
 MC_class1 = (FP_class1 + FN_class1) / (TP_class1 + TN_class1 + FP_class1 + FN_class1);
+L = loss(svmCLF, [p1 y2], class_train);
 
 train_accuracy = mean(class_train == predicted_class_train);
 test_accuracy = mean(class_test == predicted_class);
 fprintf('Accuracy on train data is %5.2f%%',train_accuracy)
 fprintf('\nAccuracy on test data is %5.2f%%',test_accuracy)
 fprintf('\nMC on test data is %5.2f%%',MC_class1)
+fprintf('\nloss on train data is %5.2f%%',L)
 fprintf('\n')
