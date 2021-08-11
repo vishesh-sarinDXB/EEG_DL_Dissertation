@@ -31,7 +31,7 @@ for k = 1 : length(data_dir)
     real = zeros(nbChannels, nbSamplesPerTrial, (nbTrials_real*2));
     mi = zeros(nbChannels, nbSamplesPerTrial, (nbTrials_mi*2));
 
-    [B,A] = butter(4,[8 14]/(fs/2));   % [8 30]
+    [B,A] = butter(2,[8 14]/(fs/2));   % [8 30]
 
     movement_left = eeg.movement_left((1:64), :);
     movement_right = eeg.movement_right((1:64), :);
