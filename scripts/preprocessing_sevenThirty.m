@@ -117,8 +117,8 @@ for k = 1 : length(data_dir)
 
     data_processed_dir = dir('../data/processed/sevenThirty/');
 
-    startEpoch = 0.5;
-    endEpoch = 2.5;
+    startEpoch = 2.5;
+    endEpoch = 4.5;
 
     nbChannels = 64;
     
