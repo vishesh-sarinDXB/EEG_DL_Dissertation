@@ -4,7 +4,7 @@ function preprocessing_gigaDB(data_dir, data_processed_dir, startEpoch, endEpoch
 filePattern = fullfile(data_dir, '*.mat');
 data_dir = dir(filePattern);
 
-data_processed_dir = strcat('../data/processed/', data_processed_dir, '/');
+data_processed_dir = strcat('../../data/processed/', data_processed_dir, '/');
 
 if ~exist(data_processed_dir, 'dir')
     mkdir(data_processed_dir)
