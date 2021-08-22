@@ -37,8 +37,8 @@ for k = 1 : length(data_dir)
 
     [B,A] = butter(order,[lowPassBand highPassBand]/(fs/2));   % [8 30]
 
-    movement_left = eeg.movement_left((1:64), :);
-    movement_right = eeg.movement_right((1:64), :);
+    movement_left = eeg.movement_left((1:64), :) * 1000000;
+    movement_right = eeg.movement_right((1:64), :) * 1000000;
 
     for trial = 1 : nbTrials_real
         cueIndex = cues_real(trial);
@@ -75,8 +75,8 @@ for k = 1 : length(data_dir)
     class_real(1:nbTrials_real) = 1;
     class_real((nbTrials_real + 1) : (nbTrials_real * 2)) = 2;
 
-    mi_left = eeg.imagery_left((1:64), :);
-    mi_right = eeg.imagery_right((1:64), :);
+    mi_left = eeg.imagery_left((1:64), :)*1000000;
+    mi_right = eeg.imagery_right((1:64), :)*1000000;
 
     for trial = 1 : nbTrials_mi
         cueIndex = cues_mi(trial);
@@ -120,6 +120,8 @@ for k = 1 : length(data_dir)
     fullFileName = fullfile(data_processed_dir(1).folder, data_dir(k).name);
     
     save(fullFileName, 'real', 'mi', 'class_mi', 'class_real');
+    
+    disp(k)
     
 %     clear
 %     

@@ -127,7 +127,7 @@ inputSize = size(F,2);
 % needs to be same
 numHiddenUnits1 = 100; 
 numHiddenUnits2 = 20; 
-maxEpochs = 100;
+maxEpochs = 200;
 [~, ~, MiniBatchSize] = size(train_data);
         
 numResponses = 1;

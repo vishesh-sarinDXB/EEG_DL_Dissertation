@@ -1,4 +1,4 @@
-raw_data = '../data/raw/mat_data/';
+raw_data = '../../data/raw/mat_data/';
 
 % All channels, start epoch 0.5 seconds after cue (2.5 seconds after start
 % of trial) and epoch lasts 2 seconds. Fourth order, band pass butterworth
