@@ -1,4 +1,4 @@
-vec = 1:200;
+vec = rand(2, 3)*100;
 
 % movement_left = eeg.movement_left((1:64), :);
 % movement_right = eeg.movement_right((1:64), :);
@@ -12,9 +12,9 @@ vec = 1:200;
 
 % for i=1:(arrayshape(1)) signal2(i,:)=movement_left(i,:)-mean(movement_left,1); end
 
-vec = vec(randperm(length(vec)));
-vec2(1:100) = 1;
-vec2(101:200) = 2;
+% vec = vec(randperm(length(vec)));
+% vec2(1:100) = 1;
+% vec2(101:200) = 2;
 
 % fs = 5000;                     
 % 
