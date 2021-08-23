@@ -2,7 +2,7 @@ vec = rand(2, 3)*100;
 
 % movement_left = eeg.movement_left((1:64), :);
 % movement_right = eeg.movement_right((1:64), :);
-% 
+
 % mi_left = eeg.imagery_left((1:64), :);
 % mi_right = eeg.imagery_right((1:64), :);
 

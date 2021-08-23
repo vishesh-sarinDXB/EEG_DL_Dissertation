@@ -35,7 +35,7 @@ Cc = sum(C_bar,3); % Composite covariance matrix
 [u1,s1] = eig(Cc);
 [s1,idx1] = sort(diag(s1),'descend');
  u1 = u1(:,idx1);
- 
+    
  P = sqrt(inv(diag(s1 + 0.001* eye(size(s1)))))*u1'; % whitening matrix
  %clear C_cap
  for y = 1:nclass
