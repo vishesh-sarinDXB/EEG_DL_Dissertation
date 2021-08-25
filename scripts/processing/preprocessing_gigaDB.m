@@ -37,8 +37,8 @@ for k = 1 : length(data_dir)
 
     [B,A] = butter(order,[lowPassBand highPassBand]/(fs/2));   % [8 30]
 
-    movement_left = eeg.movement_left((1:64), :) * 0.001;
-    movement_right = eeg.movement_right((1:64), :) * 0.001;
+    movement_left = eeg.movement_left((1:64), :);
+    movement_right = eeg.movement_right((1:64), :);
 
     for trial = 1 : nbTrials_real
         cueIndex = cues_real(trial);
@@ -46,12 +46,12 @@ for k = 1 : length(data_dir)
         epoch_shape = size(epoch_intermediate);
         epoch = zeros(epoch_shape);
         
-        for i=1:(epoch_shape(2))
-            epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
-        end
-%         
-        epoch = filter(B,A,epoch);
-        real(:,:,trial) = epoch;
+%         for i=1:(epoch_shape(2))
+%             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
+%         end
+% %         
+%         epoch = filter(B,A,epoch);
+        real(:,:,trial) = epoch_intermediate;
     end
 
     for trial = (nbTrials_real + 1) : (nbTrials_real * 2)
@@ -60,23 +60,23 @@ for k = 1 : length(data_dir)
         epoch_shape = size(epoch_intermediate);
         epoch = zeros(epoch_shape);
         
-        for i=1:(epoch_shape(2))
-            epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
-        end
-%         
-%         for i=1:(epoch_shape(1))
-%             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
+%         for i=1:(epoch_shape(2))
+%             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
 %         end
-        
-        epoch = filter(B,A,epoch);
-        real(:,:,trial) = epoch;
+% %         
+% %         for i=1:(epoch_shape(1))
+% %             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
+% %         end
+%         
+%         epoch = filter(B,A,epoch);
+        real(:,:,trial) = epoch_intermediate;
     end
 
     class_real(1:nbTrials_real) = 1;
     class_real((nbTrials_real + 1) : (nbTrials_real * 2)) = 2;
 
-    mi_left = eeg.imagery_left((1:64), :) * 0.001;
-    mi_right = eeg.imagery_right((1:64), :) * 0.001;
+    mi_left = eeg.imagery_left((1:64), :);
+    mi_right = eeg.imagery_right((1:64), :);
 
     for trial = 1 : nbTrials_mi
         cueIndex = cues_mi(trial);
@@ -84,16 +84,16 @@ for k = 1 : length(data_dir)
         epoch_shape = size(epoch_intermediate);
         epoch = zeros(epoch_shape);
         
-        for i=1:(epoch_shape(2))
-            epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
-        end
-%         
-%         for i=1:(epoch_shape(1))
-%             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
+%         for i=1:(epoch_shape(2))
+%             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
 %         end
-        
-        epoch = filter(B,A,epoch);
-        mi(:,:,trial) = epoch;
+% %         
+% %         for i=1:(epoch_shape(1))
+% %             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
+% %         end
+%         
+%         epoch = filter(B,A,epoch);
+        mi(:,:,trial) = epoch_intermediate;
     end
 
     for trial = (nbTrials_mi + 1) : (nbTrials_mi * 2)
@@ -102,16 +102,16 @@ for k = 1 : length(data_dir)
         epoch_shape = size(epoch_intermediate);
         epoch = zeros(epoch_shape);
         
-        for i=1:(epoch_shape(2))
-            epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
-        end
-%         
-%         for i=1:(epoch_shape(1))
-%             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
+%         for i=1:(epoch_shape(2))
+%             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
 %         end
-        
-        epoch = filter(B,A,epoch);
-        mi(:,:,trial) = epoch;
+% %         
+% %         for i=1:(epoch_shape(1))
+% %             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
+% %         end
+%         
+%         epoch = filter(B,A,epoch);
+        mi(:,:,trial) = epoch_intermediate;
     end
 
     class_mi(1:nbTrials_mi) = 1;
