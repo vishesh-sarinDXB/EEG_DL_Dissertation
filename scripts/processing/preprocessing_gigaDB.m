@@ -46,12 +46,12 @@ for k = 1 : length(data_dir)
         epoch_shape = size(epoch_intermediate);
         epoch = zeros(epoch_shape);
         
-%         for i=1:(epoch_shape(2))
-%             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
-%         end
+        for i=1:(epoch_shape(2))
+            epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
+        end
 % %         
 %         epoch = filter(B,A,epoch);
-        real(:,:,trial) = epoch_intermediate;
+        real(:,:,trial) = epoch;
     end
 
     for trial = (nbTrials_real + 1) : (nbTrials_real * 2)
@@ -60,16 +60,16 @@ for k = 1 : length(data_dir)
         epoch_shape = size(epoch_intermediate);
         epoch = zeros(epoch_shape);
         
-%         for i=1:(epoch_shape(2))
-%             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
+        for i=1:(epoch_shape(2))
+            epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
+        end
+%         
+%         for i=1:(epoch_shape(1))
+%             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
 %         end
-% %         
-% %         for i=1:(epoch_shape(1))
-% %             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
-% %         end
 %         
 %         epoch = filter(B,A,epoch);
-        real(:,:,trial) = epoch_intermediate;
+        real(:,:,trial) = epoch;
     end
 
     class_real(1:nbTrials_real) = 1;
@@ -84,16 +84,16 @@ for k = 1 : length(data_dir)
         epoch_shape = size(epoch_intermediate);
         epoch = zeros(epoch_shape);
         
-%         for i=1:(epoch_shape(2))
-%             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
+        for i=1:(epoch_shape(2))
+            epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
+        end
+%         
+%         for i=1:(epoch_shape(1))
+%             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
 %         end
-% %         
-% %         for i=1:(epoch_shape(1))
-% %             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
-% %         end
 %         
 %         epoch = filter(B,A,epoch);
-        mi(:,:,trial) = epoch_intermediate;
+        mi(:,:,trial) = epoch;
     end
 
     for trial = (nbTrials_mi + 1) : (nbTrials_mi * 2)
@@ -102,16 +102,16 @@ for k = 1 : length(data_dir)
         epoch_shape = size(epoch_intermediate);
         epoch = zeros(epoch_shape);
         
-%         for i=1:(epoch_shape(2))
-%             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
+        for i=1:(epoch_shape(2))
+            epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
+        end
+%         
+%         for i=1:(epoch_shape(1))
+%             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
 %         end
-% %         
-% %         for i=1:(epoch_shape(1))
-% %             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
-% %         end
 %         
 %         epoch = filter(B,A,epoch);
-        mi(:,:,trial) = epoch_intermediate;
+        mi(:,:,trial) = epoch;
     end
 
     class_mi(1:nbTrials_mi) = 1;
