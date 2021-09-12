@@ -46,12 +46,15 @@ for k = 1 : length(data_dir)
     movement_left = zeros(movement_left_shape);
     movement_right = zeros(movement_right_shape);
     
+    mean_left = mean(movement_left_intermediate,2);
+    mean_right = mean(movement_right_intermediate,2);
+    
     for i=1:(movement_left_shape(2))
-        movement_left(:,i) = movement_left_intermediate(:,i)-mean(movement_left_intermediate,2);
+        movement_left(:,i) = movement_left_intermediate(:,i)-mean_left;
     end
     
     for i=1:(movement_right_shape(2))
-        movement_right(:,i) = movement_right_intermediate(:,i)-mean(movement_right_intermediate,2);
+        movement_right(:,i) = movement_right_intermediate(:,i)-mean_right;
     end
 %     
 %     movement_left = filter(B, A, movement_left_intermediate);
@@ -101,12 +104,15 @@ for k = 1 : length(data_dir)
     mi_left = zeros(mi_left_shape);
     mi_right = zeros(mi_right_shape);
     
+    mean_left = mean(mi_left_intermediate,2);
+    mean_right = mean(mi_right_intermediate,2);
+    
     for i=1:(mi_left_shape(2))
-        mi_left(:,i) = mi_left_intermediate(:,i)-mean(mi_left_intermediate,2);
+        mi_left(:,i) = mi_left_intermediate(:,i)-mean_left;
     end
     
     for i=1:(mi_right_shape(2))
-        mi_right(:,i) = mi_right_intermediate(:,i)-mean(mi_right_intermediate,2);
+        mi_right(:,i) = mi_right_intermediate(:,i)-mean_right;
     end
 %     
 %     mi_left = filter(B, A, mi_left_intermediate);
