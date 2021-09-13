@@ -35,11 +35,11 @@ for k = 1 : length(data_dir)
     real = zeros(nbChannels, nbSamplesPerTrial, (nbTrials_real*2));
     mi = zeros(nbChannels, nbSamplesPerTrial, (nbTrials_mi*2));
 
-    [B,A] = butter(order,highPassBand/(fs/2));   % [8 30]
-    [B2,A2] = butter(order-1,lowPassBand/(fs/2), 'high');
+    [B,A] = butter(order,[lowPassBand highPassBand]/(fs/2));   % [8 30]
+%     [B2,A2] = butter(order-1,lowPassBand/(fs/2), 'high');
     
-    movement_left_intermediate = eeg.movement_left((1:64), :);
-    movement_right_intermediate = eeg.movement_right((1:64), :);
+    movement_left = eeg.movement_left((1:64), :);
+    movement_right = eeg.movement_right((1:64), :);
 %     
 %     movement_left_shape = size(movement_left_intermediate);
 %     movement_right_shape = size(movement_right_intermediate);
@@ -58,11 +58,11 @@ for k = 1 : length(data_dir)
 %         movement_right(:,i) = movement_right_intermediate(:,i)-mean_right;
 %     end
 %     
-    movement_left = filter(B, A, movement_left_intermediate);
-    movement_left = filter(B2, A2, movement_left);
-    
-    movement_right = filter(B, A, movement_right_intermediate);
-    movement_right = filter(B2, A2, movement_right);
+%     movement_left = filter(B, A, movement_left_intermediate);
+%     movement_left = filter(B2, A2, movement_left);
+%     
+%     movement_right = filter(B, A, movement_right_intermediate);
+%     movement_right = filter(B2, A2, movement_right);
 %     
 %     movement_left_shape = size(movement_left_intermediate);
 %     movement_right_shape = size(movement_right_intermediate);
@@ -92,7 +92,7 @@ for k = 1 : length(data_dir)
             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
         end
 %         
-%         epoch = filter(B,A,epoch);
+        epoch = filter(B,A,epoch);
         real(:,:,trial) = epoch;
     end
 
@@ -110,15 +110,15 @@ for k = 1 : length(data_dir)
 %             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
 %         end
         
-%         epoch = filter(B,A,epoch);
+        epoch = filter(B,A,epoch);
         real(:,:,trial) = epoch;
     end
 
     class_real(1:nbTrials_real) = 1;
     class_real((nbTrials_real + 1) : (nbTrials_real * 2)) = 2;
 
-    mi_left_intermediate = eeg.imagery_left((1:64), :);
-    mi_right_intermediate = eeg.imagery_right((1:64), :);
+    mi_left = eeg.imagery_left((1:64), :);
+    mi_right = eeg.imagery_right((1:64), :);
 %     
 %     mi_left_shape = size(mi_left_intermediate);
 %     mi_right_shape = size(mi_right_intermediate);
@@ -136,13 +136,13 @@ for k = 1 : length(data_dir)
 %     for i=1:(mi_right_shape(2))
 %         mi_right(:,i) = mi_right_intermediate(:,i)-mean_right;
 %     end
+% %     
+%     mi_left = filter(B, A, mi_left_intermediate);
+%     mi_left = filter(B2, A2, mi_left);
 %     
-    mi_left = filter(B, A, mi_left_intermediate);
-    mi_left = filter(B2, A2, mi_left);
-    
-    mi_right = filter(B, A, mi_right_intermediate);
-    mi_right = filter(B2, A2, mi_right);
-    
+%     mi_right = filter(B, A, mi_right_intermediate);
+%     mi_right = filter(B2, A2, mi_right);
+%     
 %     mi_left_shape = size(mi_left_intermediate);
 %     mi_right_shape = size(mi_right_intermediate);
 %     
@@ -174,7 +174,7 @@ for k = 1 : length(data_dir)
 %             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
 %         end
 %         
-%         epoch = filter(B,A,epoch);
+        epoch = filter(B,A,epoch);
         mi(:,:,trial) = epoch;
     end
 
@@ -192,7 +192,7 @@ for k = 1 : length(data_dir)
 %             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
 %         end
 %         
-%         epoch = filter(B,A,epoch);
+        epoch = filter(B,A,epoch);
         mi(:,:,trial) = epoch;
     end
 
