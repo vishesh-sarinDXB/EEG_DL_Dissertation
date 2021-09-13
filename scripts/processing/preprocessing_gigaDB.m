@@ -39,6 +39,26 @@ for k = 1 : length(data_dir)
 
     movement_left_intermediate = eeg.movement_left((1:64), :);
     movement_right_intermediate = eeg.movement_right((1:64), :);
+%     
+%     movement_left_shape = size(movement_left_intermediate);
+%     movement_right_shape = size(movement_right_intermediate);
+%     
+%     movement_left = zeros(movement_left_shape);
+%     movement_right = zeros(movement_right_shape);
+%     
+%     mean_left = mean(movement_left_intermediate,2);
+%     mean_right = mean(movement_right_intermediate,2);
+%     
+%     for i=1:(movement_left_shape(2))
+%         movement_left(:,i) = movement_left_intermediate(:,i)-mean_left;
+%     end
+%     
+%     for i=1:(movement_right_shape(2))
+%         movement_right(:,i) = movement_right_intermediate(:,i)-mean_right;
+%     end
+%     
+    movement_left_intermediate = filter(B, A, movement_left_intermediate);
+    movement_right_intermediate = filter(B, A, movement_right_intermediate);
     
     movement_left_shape = size(movement_left_intermediate);
     movement_right_shape = size(movement_right_intermediate);
@@ -56,9 +76,7 @@ for k = 1 : length(data_dir)
     for i=1:(movement_right_shape(2))
         movement_right(:,i) = movement_right_intermediate(:,i)-mean_right;
     end
-%     
-%     movement_left = filter(B, A, movement_left_intermediate);
-%     movement_right = filter(B, A, movement_right_intermediate);
+%
 
     for trial = 1 : nbTrials_real
         cueIndex = cues_real(trial);
@@ -97,6 +115,26 @@ for k = 1 : length(data_dir)
 
     mi_left_intermediate = eeg.imagery_left((1:64), :);
     mi_right_intermediate = eeg.imagery_right((1:64), :);
+%     
+%     mi_left_shape = size(mi_left_intermediate);
+%     mi_right_shape = size(mi_right_intermediate);
+%     
+%     mi_left = zeros(mi_left_shape);
+%     mi_right = zeros(mi_right_shape);
+%     
+%     mean_left = mean(mi_left_intermediate,2);
+%     mean_right = mean(mi_right_intermediate,2);
+%     
+%     for i=1:(mi_left_shape(2))
+%         mi_left(:,i) = mi_left_intermediate(:,i)-mean_left;
+%     end
+%     
+%     for i=1:(mi_right_shape(2))
+%         mi_right(:,i) = mi_right_intermediate(:,i)-mean_right;
+%     end
+%     
+    mi_left_intermediate = filter(B, A, mi_left_intermediate);
+    mi_right_intermediate = filter(B, A, mi_right_intermediate);
     
     mi_left_shape = size(mi_left_intermediate);
     mi_right_shape = size(mi_right_intermediate);
@@ -114,9 +152,6 @@ for k = 1 : length(data_dir)
     for i=1:(mi_right_shape(2))
         mi_right(:,i) = mi_right_intermediate(:,i)-mean_right;
     end
-%     
-%     mi_left = filter(B, A, mi_left_intermediate);
-%     mi_right = filter(B, A, mi_right_intermediate);
 
     for trial = 1 : nbTrials_mi
         cueIndex = cues_mi(trial);
@@ -162,22 +197,5 @@ for k = 1 : length(data_dir)
     save(fullFileName, 'real', 'mi', 'class_mi', 'class_real');
     
     disp(fullFileName)
-    
-%     clear
-%     
-%     data_dir = '../data/raw/mat_data/';
-%     filePattern = fullfile(data_dir, '*.mat');
-%     data_dir = dir(filePattern);
-% 
-%     if ~exist('../data/processed/sevenThirty/', 'dir')
-%         mkdir ../data/processed/sevenThirty/
-%     end
-% 
-%     data_processed_dir = dir('../data/processed/sevenThirty/');
-% 
-%     startEpoch = 2.5;
-%     endEpoch = 4.5;
-% 
-%     nbChannels = 64;
-    
+   
 end
