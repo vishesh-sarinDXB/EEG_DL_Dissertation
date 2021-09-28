@@ -113,9 +113,9 @@ for k = 1 : length(data_dir)
 %         epoch = filter(B,A,epoch);
 %         real(:,:,trial) = epoch;
 %     end
-% 
-%     class_real(1:nbTrials_real) = 1;
-%     class_real((nbTrials_real + 1) : (nbTrials_real * 2)) = 2;
+
+    class_real(1:nbTrials_real) = 1;
+    class_real((nbTrials_real + 1) : (nbTrials_real * 2)) = 2;
 
     mi_left = eeg.imagery_left((1:64), :);
     mi_right = eeg.imagery_right((1:64), :);
