@@ -147,7 +147,7 @@ options = trainingOptions('sgdm', ...
 'MiniBatchSize',MiniBatchSize, ...
 ...% 'Shuffle', 'every-epoch', ...
 'GradientThreshold',1, ...
-'Verbose',0);
+'Verbose',1);
 
 lstmNnet = trainNetwork(FF_Train,class_train',layers,options);
 
@@ -155,7 +155,7 @@ y2 = real(y2);
 y2_Test = real(y2_Test);
 
 p1 = predict(lstmNnet,FF_Train,'MiniBatchSize',1);
-svmCLF=fitcsvm([p1 y2],class_train','Solver','L1QP');
+svmCLF=fitcsvm([p1 y2],class_train', 'Verbose', 1, 'NumPrint', 1); %'Solver','L1QP',
 predicted_class_train = predict(svmCLF,[p1 y2]);
 predicted_class_train = predicted_class_train';
 
