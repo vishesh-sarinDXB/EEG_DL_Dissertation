@@ -40,7 +40,7 @@ for k = 1 : length(data_processed_dir)
     class_mi = class_mi(vec);
     mi = mi(:, :, vec);
     
-    for fold = 1 : 3
+    for fold = 1 : 10
 
         test = (ind == fold); 
         test_ind = find(test == 1);
