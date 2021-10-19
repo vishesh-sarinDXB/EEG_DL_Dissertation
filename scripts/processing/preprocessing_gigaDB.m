@@ -101,7 +101,10 @@ for k = 1 : length(data_dir)
     
     fullFileName = fullfile(data_processed_dir(1).folder, data_dir(k).name);
     
-    save(fullFileName, 'real', 'mi', 'class_mi');%, 'class_real');
+    save(fullFileName, 'real', 'mi', 'class_mi', 'class_real');
+    
+    clear class_mi
+    clear class_real
     
     disp(fullFileName)
    
