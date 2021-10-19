@@ -57,10 +57,6 @@ for k = 1 : length(data_dir)
         for i=1:(epoch_shape(2))
             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
         end
-%         
-%         for i=1:(epoch_shape(1))
-%             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
-%         end
         
         epoch = filter(B,A,epoch);
         real(:,:,trial) = epoch;
@@ -81,11 +77,7 @@ for k = 1 : length(data_dir)
         for i=1:(epoch_shape(2))
             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
         end
-%         
-%         for i=1:(epoch_shape(1))
-%             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
-%         end
-%         
+
         epoch = filter(B,A,epoch);
         mi(:,:,trial) = epoch;
     end
@@ -99,11 +91,7 @@ for k = 1 : length(data_dir)
         for i=1:(epoch_shape(2))
             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
         end
-        
-%         for i=1:(epoch_shape(1))
-%             epoch(i,:) = epoch_intermediate(i,:)-mean(epoch_intermediate,1);
-%         end
-%         
+
         epoch = filter(B,A,epoch);
         mi(:,:,trial) = epoch;
     end
