@@ -33,47 +33,6 @@ for k = 1 : length(data_dir)
     
     movement_left = eeg.movement_left((1:64), :);
     movement_right = eeg.movement_right((1:64), :);
-%     
-%     movement_left_shape = size(movement_left_intermediate);
-%     movement_right_shape = size(movement_right_intermediate);
-%     
-%     movement_left = zeros(movement_left_shape);
-%     movement_right = zeros(movement_right_shape);
-%     
-%     mean_left = mean(movement_left_intermediate,2);
-%     mean_right = mean(movement_right_intermediate,2);
-%     
-%     for i=1:(movement_left_shape(2))
-%         movement_left(:,i) = movement_left_intermediate(:,i)-mean_left;
-%     end
-%     
-%     for i=1:(movement_right_shape(2))
-%         movement_right(:,i) = movement_right_intermediate(:,i)-mean_right;
-%     end
-%     
-%     movement_left = filter(B, A, movement_left_intermediate);
-%     movement_left = filter(B2, A2, movement_left);
-%     
-%     movement_right = filter(B, A, movement_right_intermediate);
-%     movement_right = filter(B2, A2, movement_right);
-%     
-%     movement_left_shape = size(movement_left_intermediate);
-%     movement_right_shape = size(movement_right_intermediate);
-%     
-%     movement_left = zeros(movement_left_shape);
-%     movement_right = zeros(movement_right_shape);
-%     
-%     mean_left = mean(movement_left_intermediate,2);
-%     mean_right = mean(movement_right_intermediate,2);
-%     
-%     for i=1:(movement_left_shape(2))
-%         movement_left(:,i) = movement_left_intermediate(:,i)-mean_left;
-%     end
-%     
-%     for i=1:(movement_right_shape(2))
-%         movement_right(:,i) = movement_right_intermediate(:,i)-mean_right;
-%     end
-%
 
     for trial = 1 : nbTrials_real
         cueIndex = cues_real(trial);
@@ -84,7 +43,7 @@ for k = 1 : length(data_dir)
         for i=1:(epoch_shape(2))
             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
         end
-%         
+         
         epoch = filter(B,A,epoch);
         real(:,:,trial) = epoch;
     end
