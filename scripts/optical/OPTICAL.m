@@ -149,7 +149,7 @@ options = trainingOptions('sgdm', ...
 'GradientThreshold',1, ...
 'Verbose',1);
 
-lstmNnet = trainNetwork(FF_Train,class_train',layers,options);
+[lstmNnet, info] = trainNetwork(FF_Train,class_train',layers,options);
 
 y2 = real(y2);
 y2_Test = real(y2_Test);
