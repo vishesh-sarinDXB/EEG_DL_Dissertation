@@ -16,8 +16,7 @@ T = table('Size', [52 14], 'VariableTypes', varTypes, 'VariableNames', varNames)
 
 idx_channels = channels;
 
-% for k = 1 : length(data_processed_dir)
-for k = 5 : 7
+for k = 1 : length(data_processed_dir)
     
     fullFileName = fullfile(data_processed_dir(k).folder, data_processed_dir(k).name);
     load(fullFileName);
