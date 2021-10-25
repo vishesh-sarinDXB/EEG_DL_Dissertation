@@ -16,7 +16,8 @@ T = table('Size', [52 14], 'VariableTypes', varTypes, 'VariableNames', varNames)
 
 idx_channels = channels;
 
-for k = 1 : length(data_processed_dir)
+% for k = 1 : length(data_processed_dir)
+for k = 5 : 7
     
     fullFileName = fullfile(data_processed_dir(k).folder, data_processed_dir(k).name);
     load(fullFileName);
@@ -30,7 +31,7 @@ for k = 1 : length(data_processed_dir)
                Precision_class1, Precision_class2, Recall_class1, Recall_class2, ...
                F1_class1, F1_class2, Precision_class1_train, Precision_class2_train, ...
                Recall_class1_train, Recall_class2_train, F1_class1_train, F1_class2_train, info] = ...
-               OPTICAL(mi,real,class_mi, class_real, 50, 20);
+               OPTICAL(mi,real,class_mi, class_real, 256, 20);
     
     T(k, :) = {train_accuracy, test_accuracy, ...
                Precision_class1, Precision_class2, Recall_class1, Recall_class2, ...
