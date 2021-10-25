@@ -155,7 +155,7 @@ y2 = real(y2);
 y2_Test = real(y2_Test);
 
 p1 = predict(lstmNnet,FF_Train,'MiniBatchSize',1);
-svmCLF=fitcsvm([p1 y2],class_train', 'Verbose', 2); %'Solver','L1QP',
+svmCLF=fitcsvm([p1 y2],class_train', 'Verbose', 1, 'NumPrint', 1); %'Solver','L1QP',
 predicted_class_train = predict(svmCLF,[p1 y2]);
 predicted_class_train = predicted_class_train';
 
