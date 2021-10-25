@@ -32,6 +32,7 @@ for k = 5 : 7
     
     lstm = cell(10);
     svm = cell(10);
+    info = cell(10);
     
 %     class_mi = class_mi - 1;
     
@@ -56,7 +57,7 @@ for k = 5 : 7
         [~, lstmNnet, svmCLF, train_accuracy, test_accuracy, ...
                    Precision_class1, Precision_class2, Recall_class1, Recall_class2, ...
                    F1_class1, F1_class2, Precision_class1_train, Precision_class2_train, ...
-                   Recall_class1_train, Recall_class2_train, F1_class1_train, F1_class2_train] = ...
+                   Recall_class1_train, Recall_class2_train, F1_class1_train, F1_class2_train, infoNet] = ...
                    OPTICAL(Train_data, Test_data, Target_Train, Target_Test, 256, 20);
 
         T(fold, :) = {train_accuracy, test_accuracy, ...
@@ -66,6 +67,7 @@ for k = 5 : 7
 
         lstm{fold} = lstmNnet;
         svm{fold} = svmCLF;
+        info{fold} = infoNet;
     end
     
     models_dir_cat = strcat('../../models/mi_cv/', experiment_name);
@@ -78,7 +80,7 @@ for k = 5 : 7
     
     fullFileName = fullfile(models_dir(1).folder, data_processed_dir(k).name);
     
-    save(fullFileName, 'lstm', 'svm', 'ind');
+    save(fullFileName, 'lstm', 'svm', 'ind', 'info');
     
     summary_dir_cat = strcat('../../summary/mi_cv/', experiment_name, '/');
     

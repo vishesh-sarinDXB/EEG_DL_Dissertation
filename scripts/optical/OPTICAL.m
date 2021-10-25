@@ -2,7 +2,7 @@ function [predicted_class, lstmNnet, ...
                    svmCLF, train_accuracy, test_accuracy, ...
                    Precision_class1, Precision_class2, Recall_class1, Recall_class2, ...
                    F1_class1, F1_class2, Precision_class1_train, Precision_class2_train, ...
-                   Recall_class1_train, Recall_class2_train, F1_class1_train, F1_class2_train] = ...
+                   Recall_class1_train, Recall_class2_train, F1_class1_train, F1_class2_train, info] = ...
                              OPTICAL(train_data, ...
                                      test_data, ...
                                      class_train, ...
@@ -155,7 +155,7 @@ y2 = real(y2);
 y2_Test = real(y2_Test);
 
 p1 = predict(lstmNnet,FF_Train,'MiniBatchSize',1);
-svmCLF=fitcsvm([p1 y2],class_train', 'Verbose', 1, 'NumPrint', 1); %'Solver','L1QP',
+svmCLF=fitcsvm([p1 y2],class_train', 'Verbose', 2); %'Solver','L1QP',
 predicted_class_train = predict(svmCLF,[p1 y2]);
 predicted_class_train = predicted_class_train';
 
@@ -212,14 +212,14 @@ F1_class2_train = 2*((Precision_class2_train * Recall_class2_train)/(Precision_c
 % Precision_class1, Precision_class2, Recall_class1, Recall_class2,
 % F1_class1, F1_class2, Precision_class1_train, Precision_class2_train,
 % Recall_class1_train, Recall_class2_train, F1_class1_train, F1_class2_train
-
-MC_class1 = (FP_class1 + FN_class1) / (TP_class1 + TN_class1 + FP_class1 + FN_class1);
-L = loss(svmCLF, [p1 y2], class_train);
+% 
+% MC_class1 = (FP_class1 + FN_class1) / (TP_class1 + TN_class1 + FP_class1 + FN_class1);
+% L = loss(svmCLF, [p1 y2], class_train);
 
 train_accuracy = mean(class_train == predicted_class_train);
 test_accuracy = mean(class_test == predicted_class);
 fprintf('Accuracy on train data is %5.2f%%',train_accuracy)
 fprintf('\nAccuracy on test data is %5.2f%%',test_accuracy)
-fprintf('\nMC on test data is %5.2f%%',MC_class1)
-fprintf('\nloss on train data is %5.2f%%',L)
+% fprintf('\nMC on test data is %5.2f%%',MC_class1)
+% fprintf('\nloss on train data is %5.2f%%',L)
 fprintf('\n')

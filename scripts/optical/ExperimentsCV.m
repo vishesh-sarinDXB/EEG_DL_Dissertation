@@ -6,10 +6,7 @@
 
 OPTICALexperimentCV('../../data/processed/sevenThirty/', 'all', [1:64]);
 clear
-% 
-% OPTICALexperimentCV('../../data/processed/sevenThirty_2.5-4.5/', 'all_2.5-4.5', [1:64]);
-% clear
-% 
+
 % % Using all channels, but bandpass ButterWorth filter between 8 and 14 Hz
 % % thus isolating alpha and mu waves
 % OPTICALexperimentCV('../../data/processed/eightFourteen/', 'all_channels_alphamu', [1:64]);
