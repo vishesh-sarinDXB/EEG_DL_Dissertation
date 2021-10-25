@@ -20,6 +20,7 @@ for k = 1 : length(data_processed_dir)
     
     fullFileName = fullfile(data_processed_dir(k).folder, data_processed_dir(k).name);
     load(fullFileName);
+    disp(fullFileName);
     
     if(~isequal(channels, [1:64]))
         mi = mi(idx_channels, :, :);
