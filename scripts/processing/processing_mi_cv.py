@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-parent = '../summary/mi_cv/'
+parent = '../../summary/mi_cv/'
 
 experiment_list = os.listdir(parent)
 
