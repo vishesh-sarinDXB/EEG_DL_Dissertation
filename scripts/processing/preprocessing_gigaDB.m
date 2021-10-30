@@ -95,9 +95,16 @@ for k = 1 : length(data_dir)
         epoch = filter(B,A,epoch);
         mi(:,:,trial) = epoch;
     end
-
+    
+%     mi_new = mi(:, :, 81:100);
+%     mi_new(:, :, 21:40) = mi(:, :, 181:200);
+%     mi = mi_new;
+    
     class_mi(1:nbTrials_mi) = 1;
     class_mi((nbTrials_mi + 1) : (nbTrials_mi * 2)) = 2;
+    
+%     class_mi(1:20) = 1;
+%     class_mi(21:40) = 2;
     
     fullFileName = fullfile(data_processed_dir(1).folder, data_dir(k).name);
     

@@ -25,6 +25,8 @@ for k = 1 : length(data_processed_dir)
         real = real(idx_channels, :, :);
     end
     
+%     class_real(:) = 2;
+%     class_mi(101:140) = class_real(1:40);
     ind = crossvalind('Kfold', class_mi, 10);     
 
     T = table('Size', [10 14], 'VariableTypes', varTypes, 'VariableNames', varNames);
@@ -39,6 +41,7 @@ for k = 1 : length(data_processed_dir)
     vec = vec(randperm(length(vec)));
     
     class_mi = class_mi(vec);
+%     mi(:,:, 101:140) = real(:, :, 1:40);
     mi = mi(:, :, vec);
     
     for fold = 1 : 10
