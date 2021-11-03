@@ -78,7 +78,7 @@ for k = 1 : length(data_dir)
             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
         end
 
-        epoch = filter(B,A,epoch);
+%         epoch = filter(B,A,epoch);
         mi(:,:,trial) = epoch;
     end
 
@@ -92,7 +92,7 @@ for k = 1 : length(data_dir)
             epoch(:,i) = epoch_intermediate(:,i)-mean(epoch_intermediate,2);
         end
 
-        epoch = filter(B,A,epoch);
+%         epoch = filter(B,A,epoch);
         mi(:,:,trial) = epoch;
     end
     
