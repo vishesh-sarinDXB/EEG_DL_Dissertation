@@ -3,7 +3,7 @@
 % assumed.
 
 % All channels, only basic bandpass filter between 7 and 30 Hz
-OPTICALexperiment('../../data/processed/sevenThirty/', 'all', [1:64]);
+OPTICALexperiment('../../data/processed/sevenThirty/', 'all/1', [1:64]);
 clear
 
 % Using all channels, but bandpass ButterWorth filter between 8 and 14 Hz

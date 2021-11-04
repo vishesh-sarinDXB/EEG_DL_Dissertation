@@ -10,6 +10,9 @@ function [predicted_class, lstmNnet, ...
                                      window_size, ...
                                      percentage_overlap, ...
                                      varargin)
+% stream = RandStream('mlfg6331_64','Seed',seed); % MATLAB's start-up settings
+% RandStream.setGlobalStream(stream);
+% rng(100000, 'multFibonacci')
 %%
 % The code can be used for research purpose only. Any work resulting from 
 % the use of this code should cite our original paper "Brain wave 
@@ -155,6 +158,7 @@ y2 = real(y2);
 y2_Test = real(y2_Test);
 
 p1 = predict(lstmNnet,FF_Train,'MiniBatchSize',1);
+
 svmCLF=fitcsvm([p1 y2],class_train', 'Verbose', 1, 'NumPrint', 1); %'Solver','L1QP',
 predicted_class_train = predict(svmCLF,[p1 y2]);
 predicted_class_train = predicted_class_train';

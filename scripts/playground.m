@@ -1,4 +1,6 @@
-vec = rand(2, 3)*100;
+
+
+% vec = rand(2, 3)*100;
 
 % movement_left = eeg.movement_left((1:64), :);
 % movement_right = eeg.movement_right((1:64), :);

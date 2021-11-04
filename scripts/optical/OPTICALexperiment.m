@@ -1,4 +1,7 @@
-function OPTICALexperiment(processed_dir, experiment_name, channels)
+function OPTICALexperiment(processed_dir, experiment_name, channels, seed)
+
+% stream = RandStream('mt19937ar','Seed',5); % MATLAB's start-up settings
+% RandStream.setGlobalStream(stream);
 
 data_processed_dir = processed_dir;%'../../data/processed/';
 filePattern = fullfile(data_processed_dir, '*.mat');
@@ -16,7 +19,9 @@ T = table('Size', [52 14], 'VariableTypes', varTypes, 'VariableNames', varNames)
 
 idx_channels = channels;
 
-for k = 1 : length(data_processed_dir)
+
+% for k = 1 : length(data_processed_dir)
+for k = 1 : 2
     
     fullFileName = fullfile(data_processed_dir(k).folder, data_processed_dir(k).name);
     load(fullFileName);
@@ -31,14 +36,14 @@ for k = 1 : length(data_processed_dir)
                Precision_class1, Precision_class2, Recall_class1, Recall_class2, ...
                F1_class1, F1_class2, Precision_class1_train, Precision_class2_train, ...
                Recall_class1_train, Recall_class2_train, F1_class1_train, F1_class2_train, info] = ...
-               OPTICAL(mi,real,class_mi, class_real, 256, 20);
+               OPTICAL(mi,real,class_mi, class_real, 256, 20, seed);
     
     T(k, :) = {train_accuracy, test_accuracy, ...
                Precision_class1, Precision_class2, Recall_class1, Recall_class2, ...
                F1_class1, F1_class2, Precision_class1_train, Precision_class2_train, ...
                Recall_class1_train, Recall_class2_train, F1_class1_train, F1_class2_train};
     
-    models_dir_cat = strcat('../../models/', experiment_name);
+    models_dir_cat = strcat('../../models/mi_real/', experiment_name);
            
     if ~exist(models_dir_cat', 'dir')
         mkdir(models_dir_cat)
@@ -52,12 +57,14 @@ for k = 1 : length(data_processed_dir)
     
 end
 
-if ~exist('../../summary/', 'dir')
-    mkdir ../../summary/
+summary_dir_cat = strcat('../../summary/', extractBefore(experiment_name, '/'));
+
+if ~exist(summary_dir_cat, 'dir')
+    mkdir(summary_dir_cat)
 end
 
 T = fillmissing(T, 'constant', 0);
 
-summaryFullFileName = strcat('../../summary/', experiment_name, '.csv');
+summaryFullFileName = strcat(summary_dir_cat, '/', extractAfter(experiment_name, '/'), '.csv');
 
 writetable(T, summaryFullFileName);
