@@ -32,6 +32,11 @@ for k = 1 : 10
         real = real(idx_channels, :, :);
     end
     
+    [~, ~, rp] = size(mi);
+    rp = randperm(rp);
+    mi = mi(:, :,  rp);
+    class_mi = class_mi(rp);
+    
     [~, lstmNnet, svmCLF, train_accuracy, test_accuracy, ...
                Precision_class1, Precision_class2, Recall_class1, Recall_class2, ...
                F1_class1, F1_class2, Precision_class1_train, Precision_class2_train, ...
