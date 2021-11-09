@@ -1,4 +1,4 @@
-function OPTICALexperiment(processed_dir, experiment_name, channels, seed)
+function OPTICALexperiment(processed_dir, experiment_name, channels)
 
 % stream = RandStream('mt19937ar','Seed',5); % MATLAB's start-up settings
 % RandStream.setGlobalStream(stream);
@@ -20,8 +20,8 @@ T = table('Size', [52 14], 'VariableTypes', varTypes, 'VariableNames', varNames)
 idx_channels = channels;
 
 
-% for k = 1 : length(data_processed_dir)
-for k = 1 : 10
+for k = 1 : length(data_processed_dir)
+% for k = 1 : 2
     
     fullFileName = fullfile(data_processed_dir(k).folder, data_processed_dir(k).name);
     load(fullFileName);
@@ -34,7 +34,11 @@ for k = 1 : 10
     
     [~, ~, rp] = size(mi);
     rp = randperm(rp);
-    mi = mi(:, :,  rp);
+    rpPerc = size(rp);
+    rpPerc = rpPerc(2)*0.8;
+    rp = rp(1:rpPerc);
+    
+    mi = mi(:, :, rp);
     class_mi = class_mi(rp);
     
     [~, lstmNnet, svmCLF, train_accuracy, test_accuracy, ...
