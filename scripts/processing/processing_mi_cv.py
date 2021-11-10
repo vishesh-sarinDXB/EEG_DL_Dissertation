@@ -9,7 +9,7 @@ for experiment in experiment_list:
     
     exp_dir = os.path.join(parent, experiment)
     sub_list = os.listdir(exp_dir)
-    sub_list.sort()
+    sub_list.sort() #1, 10, 9, 8...
     
     mean = pd.DataFrame(columns = ['train_accuracy', 'test_accuracy', 'Precision_class1',
                                    'Precision_class2', 'Recall_class1', 'Recall_class2', 'F1_class1',
