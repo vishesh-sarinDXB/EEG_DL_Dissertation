@@ -1,0 +1,11 @@
+train_accuracy,test_accuracy,Precision_class1,Precision_class2,Recall_class1,Recall_class2,F1_class1,F1_class2,Precision_class1_train,Precision_class2_train,Recall_class1_train,Recall_class2_train,F1_class1_train,F1_class2_train
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1
+1,0.95,0.933333333333333,1,1,0.833333333333333,0.96551724137931,0.909090909090909,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,1,1,1,1,1

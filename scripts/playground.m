@@ -1,4 +1,17 @@
+run = 45
 
+if(~isequal(run, 10))
+
+    [~, ~, rp] = size(mi);
+    rp = randperm(rp);
+    rpPerc = size(rp);
+    rpPerc = rpPerc(2)*0.8;
+    rp = rp(1:rpPerc);
+
+    mi = mi(:, :, rp);
+    class_mi = class_mi(rp);
+
+end
 
 % vec = rand(2, 3)*100;
 
