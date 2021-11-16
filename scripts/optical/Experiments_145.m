@@ -10,7 +10,7 @@ clear
 % thus isolating alpha and mu waves
 OPTICALexperimentCVcaller('../../data/processed/oneFourtyFive/', 'all_145', [1:64]);
 clear
-
+ 
 % Only using channels that aren't related to occipital, temporal, or
 % parietal lobes. Allowing channels that are in between one of these and
 % other lobes. Using bandpass filter between 7 and 30 Hz
